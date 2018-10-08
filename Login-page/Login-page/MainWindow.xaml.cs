@@ -19,11 +19,13 @@ namespace Login_page
     {
 
         Pages.LoginPage loginPage = new Pages.LoginPage();
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            this.Content = loginPage;
         }
+
+        
     }
 }

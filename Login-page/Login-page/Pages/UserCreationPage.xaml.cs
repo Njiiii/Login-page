@@ -20,9 +20,17 @@ namespace Login_page.Pages
     /// </summary>
     public partial class UserCreationPage : Page
     {
+        Window1 Window1 = new Window1();
+
         public UserCreationPage()
         {
             InitializeComponent();
         }
+
+        private void SaveNewUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            AccountSavedNotification.Visibility = Visibility.Visible;
+        }
+        
     }
 }

@@ -24,5 +24,40 @@ namespace Login_page.Pages
         {
             InitializeComponent();
         }
+
+        
+        Window1 Window1 = new Window1();
+
+        Pages.UserPage UserPage = new Pages.UserPage();
+        Pages.AdminPage AdminPage = new Pages.AdminPage();
+        Pages.UserCreationPage UserCreationPage = new Pages.UserCreationPage();
+
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            String givenAccountName = UsernameBox.Text;
+            String givenPassword = PasswordBox.Password;
+
+
+            if(givenAccountName != "" && givenPassword != "")
+            {
+                NavigationService.Navigate(UserPage);
+            }
+
+            if(givenAccountName == "admin" && givenPassword != "")
+            {
+                NavigationService.Navigate(AdminPage);
+            }
+        }
+
+
+        private void NewUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window1.Show();
+            Window1.Content = UserCreationPage;
+        }
+
+        
     }
 }

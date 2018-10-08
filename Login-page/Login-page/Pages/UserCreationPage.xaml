@@ -9,7 +9,7 @@
       Title="UserCreationPage">
 
     <Grid Background="White">
-        <Button x:Name="SaveNewUserButton" Content="Save account" HorizontalAlignment="Left" Margin="62,237,0,0" VerticalAlignment="Top" Width="90" Click="SaveNewUserButton_Click"/>
+        <Button x:Name="SaveNewUserButton" Content="Save" HorizontalAlignment="Left" Margin="62,237,0,0" VerticalAlignment="Top" Width="90" Click="SaveNewUserButton_Click"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="90,70,0,0" TextWrapping="Wrap" Text="First name" VerticalAlignment="Top" Height="20" Width="62"/>
         <TextBlock HorizontalAlignment="Left" Margin="90,100,0,0" TextWrapping="Wrap" Text="Last name" VerticalAlignment="Top" Height="20" Width="62"/>
@@ -25,8 +25,6 @@
         <PasswordBox HorizontalAlignment="Left" Margin="173,190,0,0" VerticalAlignment="Top" Height="20" Width="122"/>
 
         <TextBlock HorizontalAlignment="Center" Margin="0,25,0,0" TextWrapping="Wrap" Text="CREATE NEW ACCOUNT" VerticalAlignment="Top" Height="15" Width="165"/>
-
-        <Button x:Name="ExitToLoginButton" Content="Exit to Login" HorizontalAlignment="Left" Margin="62,271,0,0" VerticalAlignment="Top" Width="90" Click="ExitToLoginButton_Click" />
 
         <Label x:Name="AccountSavedNotification" Content="New account saved" HorizontalAlignment="Left" Margin="173,234,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
 

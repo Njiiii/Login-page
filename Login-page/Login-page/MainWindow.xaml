@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="MainWindow" HorizontalAlignment="Left" Margin="359,194,0,0" VerticalAlignment="Top"/>
+        <Frame x:Name="WindowFrame" Source="Pages/LoginPage.xaml" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>
