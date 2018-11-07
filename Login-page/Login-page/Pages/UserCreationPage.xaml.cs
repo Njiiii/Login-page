@@ -20,7 +20,6 @@ namespace Login_page.Pages
     /// </summary>
     public partial class UserCreationPage : Page
     {
-        Window1 Window1 = new Window1();
 
         public UserCreationPage()
         {
