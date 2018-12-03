@@ -49,38 +49,70 @@ namespace Login_page.Pages
 
             String givenAccountName = UsernameBox.Text;
             String givenPassword = PasswordBox.Password;
+            int x = 0;
             
+
+            //Connection string for the local sql server
             conn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Ohjelmointiprojektit\Login-page\Login-page\Login-page\Pages\UserDatabase.mdf;Integrated Security=True";
+
 
             using (conn)
             {
+
                 conn.Open();
+
+
+                //Write "connection open" to console, so that we know if and when connection is open
                 Console.WriteLine("connection open");
 
-                using(SqlCommand comm = new SqlCommand("SELECT AccountName FROM UsersTable", conn))
+
+                using (SqlCommand comm = new SqlCommand("SELECT * FROM UsersTable WHERE AccountName = '" + givenAccountName + "'", conn))
                 {
 
-                    if(comm.Equals(givenAccountName))
+                    using (SqlDataReader reader = comm.ExecuteReader())
                     {
-                        Console.WriteLine("accountname correct");
-                    }
-                    else
-                    {
-                        Console.WriteLine("accountname incorrect");
+
+                        while (reader.Read())
+                        {
+                           
+                            //If accontname is incorrect/not found, write "accountname not found to console (FOR NOW)
+                            if (givenAccountName == "" || givenAccountName != reader["AccountName"].ToString())
+                            {
+                                Console.WriteLine("accountname not found");
+                            }
+
+
+                            //If accountname is correct, direct user to UserPage or AdminPage depending on admin access
+                            if (givenAccountName == reader["AccountName"].ToString())
+                            {
+
+                                Console.WriteLine("accountname correct");
+
+                                if (reader["Admin"].ToString() == "False")
+                                {
+                                    NavigationService.Navigate(UserPage);
+                                }
+
+                                else
+                                {
+                                    NavigationService.Navigate(AdminPage);
+                                }
+
+                            }
+
+                            
+                        }
+
+                        reader.Close();
+                        
                     }
                 }
             }
+
             conn.Close();
+            //Write "connection closed" to console when connection to the server is terminated
             Console.WriteLine("connection closed");
             
-
-            //conn.Open();
-            //Console.WriteLine("connection open");
-            
-
-
-
-
         }
 
 
