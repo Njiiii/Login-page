@@ -60,48 +60,43 @@ namespace Login_page.Pages
             {
 
                 conn.Open();
-
-
+                
                 //Write "connection open" to console, so that we know if and when connection is open
                 Console.WriteLine("connection open");
-
-
+                
                 using (SqlCommand comm = new SqlCommand("SELECT * FROM UsersTable WHERE AccountName = '" + givenAccountName + "'", conn))
                 {
 
                     using (SqlDataReader reader = comm.ExecuteReader())
                     {
 
-                        while (reader.Read())
-                        {
+                        reader.Read();
                            
-                            //If accontname is incorrect/not found, write "accountname not found to console (FOR NOW)
-                            if (givenAccountName == "" || givenAccountName != reader["AccountName"].ToString())
+                            //If accontname is incorrect/not found, write "Invalid accountname" (FOR NOW)
+                            if (!reader.HasRows)
                             {
-                                Console.WriteLine("accountname not found");
+                                Console.WriteLine("Invalid accountname");
                             }
 
 
                             //If accountname is correct, direct user to UserPage or AdminPage depending on admin access
-                            if (givenAccountName == reader["AccountName"].ToString())
+                            else
                             {
-
+                            
                                 Console.WriteLine("accountname correct");
+                                    
+                                    //Check if account has admin access. If yes, redirect user to AdminPage
+                                    if (reader["Admin"].ToString() == "True")
+                                    {
+                                        NavigationService.Navigate(AdminPage);
+                                    }
 
-                                if (reader["Admin"].ToString() == "False")
-                                {
-                                    NavigationService.Navigate(UserPage);
-                                }
-
-                                else
-                                {
-                                    NavigationService.Navigate(AdminPage);
-                                }
+                                    else
+                                    {
+                                        NavigationService.Navigate(UserPage);
+                                    }
 
                             }
-
-                            
-                        }
 
                         reader.Close();
                         
